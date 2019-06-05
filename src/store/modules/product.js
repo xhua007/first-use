@@ -8,7 +8,7 @@ import { getProducts } from '../../api/product'
     },
     mutations:{
         loadDataEnd(state,payload){
-            console.group('开始--product--loadDataEnd')
+            console.group('开始--product--loadDataEnd');
             console.log(state);
             console.log(payload);
             console.groupEnd();
@@ -18,7 +18,8 @@ import { getProducts } from '../../api/product'
         }
     },
     actions:{
-        async loadData({commit}){
+        async loadData({commit},payload1){
+            console.log(payload1)
             // commit('loadDataEnd',{
             //     msg:'我也不知会结果竟是如此,,,'
             // });
@@ -28,9 +29,21 @@ import { getProducts } from '../../api/product'
             //     //console.log(res.data)
             // })
             //----------跟下面的代码等价的，下面的方法更好的点
-            const result= await getProducts()
+            const result= await getProducts(payload1);
             commit('loadDataEnd',result.data)
             console.log(result.data)
-        }
+        },
+        // loadData({commit},payload){
+        //     console.log(payload)
+        //     // commit('loadDataEnd',{
+        //     //     msg:'我也不知会结果竟是如此,,,'
+        //     // });
+        //     //-----------
+        //     getProducts().then(res=>{
+        //         commit('loadDataEnd',res.data)
+        //         //console.log(res.data)
+        //     })
+           
+        // }
     }
  }

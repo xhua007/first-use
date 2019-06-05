@@ -12,11 +12,17 @@
         <button @click="loadPosts">加载数据</button>
         <button @click="$store.dispatch('product/loadData')">获取商品信息</button>
         <button @click="loadProducts">获取商品信息1</button>
+        <button @click="loadMore()">加载更多</button>
     </div>
 </template>
 <script>
 import { mapActions,mapState } from 'vuex'
 export default {
+    data(){
+        return {
+            currentPage:1
+        }
+    },
     computed: {
         ...mapState('product',{
             products:'list'
@@ -26,7 +32,13 @@ export default {
         ...mapActions(['loadPosts']),
         ...mapActions('product',{
             loadProducts:'loadData'
-        })
+        }),
+        loadMore(){
+            this.loadProducts({
+                page:this.currentPage
+            });
+            this.currentPage+=1;
+        }
     },
     filters:{
         coverImgUrl(val){

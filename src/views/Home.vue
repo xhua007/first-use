@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <h1>Home</h1>
-    <p>{{this.$store.state.count}}</p>
+    <p>{{$store.state.count}}</p>
     <button @click="clickHandle">加2</button>
     <button @click="addByStep({step:3})">加3</button>
     <button @click="a({step:2})">加2</button>
